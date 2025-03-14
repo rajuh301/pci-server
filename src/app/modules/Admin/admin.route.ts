@@ -9,7 +9,7 @@ const router = express.Router();
 export const AdminRoutes = router;
 
 router.post(
-    '/register',
+    '/create-admin',
     // auth(USER_ROLE.ADMIN),
     validateRequest(AdminValidation.createAdminValidationSchema),
     AdminControllers.adminRegister

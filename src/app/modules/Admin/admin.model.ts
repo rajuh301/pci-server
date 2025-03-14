@@ -88,6 +88,7 @@ adminSchema.post('save', function (doc, next) {
   next();
 });
 
+
 // Static method to check if the admin exists by email
 adminSchema.statics.isAdminExistsByEmail = async function (email: string) {
   return await Admin.findOne({ email }).select('+password');

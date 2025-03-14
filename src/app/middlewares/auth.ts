@@ -7,6 +7,7 @@ import { catchAsync } from '../utils/catchAsync';
 import { USER_ROLE } from '../modules/User/user.constant';
 import { verifyToken } from '../utils/verifyJWT';
 import { Student } from '../modules/User/user.model';
+import { Admin } from '../modules/Admin/admin.model';
 
 const auth = (...requiredRoles: (keyof typeof USER_ROLE)[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
@@ -17,6 +18,8 @@ const auth = (...requiredRoles: (keyof typeof USER_ROLE)[]) => {
       throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized!');
     }
 
+    console.log(token)
+
     const decoded = verifyToken(
       token,
       config.jwt_access_secret as string
@@ -25,7 +28,7 @@ const auth = (...requiredRoles: (keyof typeof USER_ROLE)[]) => {
     const { role, email, iat } = decoded;
 
     // checking if the user is exist
-    const user = await Student.isUserExistsByEmail(email);
+    const user = await Admin.isAdminExistsByEmail(email);
 
     if (!user) {
       throw new AppError(httpStatus.NOT_FOUND, 'This user is not found !');

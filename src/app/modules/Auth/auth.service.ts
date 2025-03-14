@@ -116,20 +116,23 @@ const loginUser = async (payload: TLoginUser) => {
 
 const loginAdmin = async (payload: TLoginUser) => {
   // checking if the user is exist
-  const user = await Admin.isAdminExistsByEmail(payload?.email);
+  const admin = await Admin.isAdminExistsByEmail(payload?.email);
 
-  if (!user) {
+
+  if (!admin) {
     throw new AppError(httpStatus.NOT_FOUND, 'This user is not found!');
   }
 
-  const isVerified = user?.isVerified;
+
+  const isVerified = admin?.isVerified;
 
   if (isVerified === false) {
     throw new AppError(httpStatus.NOT_FOUND, 'This user is not verified by email');
   }
+
   // checking if the user is blocked
 
-  const userStatus = user?.status;
+  const userStatus = admin?.status;
 
   if (userStatus === 'BLOCKED') {
     throw new AppError(httpStatus.FORBIDDEN, 'This user is blocked!');
@@ -137,19 +140,17 @@ const loginAdmin = async (payload: TLoginUser) => {
 
   //checking if the password is correct
 
-  if (!(await Student.isPasswordMatched(payload?.password, user?.password)))
+  if (!(await Student.isPasswordMatched(payload?.password, admin?.password)))
     throw new AppError(httpStatus.FORBIDDEN, 'Password do not matched');
 
   //create token and sent to the  client
 
-
   const jwtPayload = {
-    _id: user._id,
-    name: user.name,
-    email: user.email,
-    mobileNumber: user.phoneNumber,
-    role: user.role,
-    status: user.status,
+    _id: admin._id,
+    name: admin.name,
+    email: admin.email,
+    role: admin.role,
+    status: admin.status,
   };
 
   const accessToken = createToken(
@@ -169,6 +170,12 @@ const loginAdmin = async (payload: TLoginUser) => {
     refreshToken,
   };
 };
+
+
+
+
+
+
 
 const changePassword = async (
   userData: JwtPayload,
