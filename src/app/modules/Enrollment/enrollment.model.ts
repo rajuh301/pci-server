@@ -7,8 +7,11 @@ const EnrollmentSchema = new Schema<TEnrollment>(
   {
     student: {
       type: Schema.Types.ObjectId,
-      ref: 'User', // Reference to the User model (Student)
+      ref: 'Student',
       required: [true, 'Student is required'],
+
+
+
     },
     course: {
       type: Schema.Types.ObjectId,
@@ -23,17 +26,17 @@ const EnrollmentSchema = new Schema<TEnrollment>(
 
     paymentAmount: {
       type: String,
-      required : [true, "Input payment amount"]
+      required: [true, "Input payment amount"]
     },
 
     paymentBank: {
       type: String,
-      required : [true, "Input bank name"]
+      required: [true, "Input bank name"]
     },
 
     screenShort: {
       type: String,
-      required : [true, "Input payment screen short"]
+      required: [true, "Input payment screen short"]
     },
 
 

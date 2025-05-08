@@ -12,7 +12,7 @@ const router = express.Router();
 // Create a new course (Only accessible by admin)
 router.post(
     '/',
-    auth(USER_ROLE.ADMIN),
+    // auth(USER_ROLE.ADMIN),
     validateRequest(CourseValidations.createCourseValidationSchema),
     CourseControllers.createCourse
 );

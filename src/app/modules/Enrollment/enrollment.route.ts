@@ -13,7 +13,7 @@ const router = express.Router();
 // Create a new enrollment (Accessible by students)
 router.post(
     '/',
-    authStudent(USER_ROLE.STUDENT),
+    // authStudent(USER_ROLE.STUDENT),
     validateRequest(EnrollmentValidations.createEnrollmentValidationSchema),
     EnrollmentControllers.createEnrollment
 );
@@ -21,15 +21,35 @@ router.post(
 
 
 // Get all enrollments (Accessible by admins)
-router.get('/', auth(USER_ROLE.ADMIN), EnrollmentControllers.getAllEnrollments);
+router.get('/',
+    auth(USER_ROLE.ADMIN),
+    EnrollmentControllers.getAllEnrollments);
 
 
-router.patch('/approve', auth(USER_ROLE.ADMIN), EnrollmentControllers.approvedStudent);
+router.patch('/approve',
+    auth(USER_ROLE.ADMIN),
+    EnrollmentControllers.approvedStudent);
 
 
 
 // Get a single enrollment by ID (Accessible by admins and the enrolled student)
-router.get('/:id', auth(USER_ROLE.ADMIN, USER_ROLE.STUDENT), EnrollmentControllers.getSingleEnrollment);
+router.get('/:id',
+
+    // auth(USER_ROLE.ADMIN, USER_ROLE.STUDENT),
+
+    EnrollmentControllers.getSingleEnrollment);
+
+
+
+router.get('/myEnroll/:id',
+
+    // auth(USER_ROLE.ADMIN, USER_ROLE.STUDENT),
+
+    EnrollmentControllers.getMyEnrollment);
+
+
+
+
 
 // Update an enrollment by ID (Accessible by admins)
 router.patch(

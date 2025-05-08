@@ -16,8 +16,6 @@ const moduleRoutes = [
     route: AuthRoutes,
   },
 
-
-
   {
     path: '/users',
     route: UserRoutes,
@@ -37,6 +35,8 @@ const moduleRoutes = [
     path: '/enrollment',
     route: EnrollmentRoutes,
   },
+
+ 
   {
     path: '/myClass',
     route: MyClassRoutes,

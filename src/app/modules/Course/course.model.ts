@@ -1,4 +1,3 @@
-// src/app/modules/Course/course.model.ts
 
 import { Schema, model } from 'mongoose';
 import { TCourse } from './course.interface';
@@ -17,7 +16,7 @@ const CourseSchema = new Schema<TCourse>(
         },
         instructor: {
             type: Schema.Types.ObjectId,
-            ref: 'User', // Reference to the User model (instructor)
+            ref: 'Admin', // Reference to the User model (instructor)
             required: [true, 'Instructor is required'],
         },
         duration: {

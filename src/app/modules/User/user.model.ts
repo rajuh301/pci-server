@@ -137,3 +137,5 @@ StudentSchema.statics.verifyEmail = async function (
 };
 
 export const Student = model<TStudent, IstudentModel>('Student', StudentSchema);
+
+

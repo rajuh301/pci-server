@@ -7,7 +7,7 @@ const createCourseValidationSchema = z.object({
     body: z.object({
         title: z.string({ required_error: 'Title is required' }),
         description: z.string({ required_error: 'Description is required' }),
-        instructor: z.string({ required_error: 'Instructor is required' }),
+        instructor: z.string().optional(),
         duration: z.number({ required_error: 'Duration is required' }).min(1),
         price: z.number({ required_error: 'Price is required' }).min(0),
         startDate: z.string({ required_error: 'Start date is required' }),

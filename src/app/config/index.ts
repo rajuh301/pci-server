@@ -19,8 +19,20 @@ export default {
   cloudinary_cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   cloudinary_api_key: process.env.CLOUDINARY_API_KEY,
   cloudinary_api_secret: process.env.CLOUDINARY_API_SECRET,
-    meilisearch_host: process.env.MEILISEARCH_HOST,
-    meilisearch_master_key: process.env.MEILISEARCH_MASTER_KEY,
+  meilisearch_host: process.env.MEILISEARCH_HOST,
+  meilisearch_master_key: process.env.MEILISEARCH_MASTER_KEY,
   sender_email: process.env.SENDER_EMAIL,
   sender_app_password: process.env.SENDER_APP_PASS,
+
+
+  NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
+  success_url: process.env.success_url,
+  fail_url: process.env.fail_url,
+  cancel_url: process.env.cancel_url,
+  ipn_url: process.env.ipn_url,
+
+
+  SSL_STORE_ID: process.env.SSL_STORE_ID,
+  SSL_STORE_PASSWORD: process.env.SSL_STORE_PASSWORD,
+
 };

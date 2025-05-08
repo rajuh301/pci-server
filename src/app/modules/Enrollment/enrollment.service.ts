@@ -29,17 +29,16 @@ const createEnrollment = async (payload: TEnrollment) => {
 
 
 const getAllEnrollments = async () => {
-    const result = await Enrollment.find({
-    });
+    const result = await Enrollment.find().populate('student');;
     return result;
 };
 
 
 // Get a single enrollment by ID
 const getSingleEnrollment = async (id: string) => {
-    const result = await Enrollment.findById(id)
-        .populate('student', 'name email') // Populate student details
-        .populate('course', 'title description'); // Populate course details
+    const result = await Enrollment.find({ student: id })
+        // .populate('student', 'name', 'email') // Populate student details
+        .populate('course'); // Populate course details
     return result;
 };
 
@@ -60,9 +59,9 @@ const deleteEnrollment = async (id: string) => {
 
 
 
-const approvedStudent = async (studentId: string) => {
+const approvedStudent = async (_id: string) => {
     const result = await Enrollment.findOneAndUpdate(
-        { student: studentId },
+        { _id: _id },
         { status: 'APPROVED' },
         { new: true } // Returns the updated document
     );
@@ -72,11 +71,18 @@ const approvedStudent = async (studentId: string) => {
 
 
 
+const getMyEnrollment = async (studentId: string) => {
+    const result = await Enrollment.find({ student: studentId })
+    return result;
+};
+
+
 export const EnrollmentServices = {
     createEnrollment,
     getAllEnrollments,
     getSingleEnrollment,
     updateEnrollment,
     deleteEnrollment,
-    approvedStudent
+    approvedStudent,
+    getMyEnrollment
 };

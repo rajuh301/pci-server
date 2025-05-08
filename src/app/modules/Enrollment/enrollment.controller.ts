@@ -111,11 +111,29 @@ const deleteEnrollment = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+
+
+const getMyEnrollment = catchAsync(async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const result = await EnrollmentServices.getMyEnrollment(id);
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'Get my Enrollment successfully!',
+        data: result,
+    });
+});
+
+
+
+
 export const EnrollmentControllers = {
     createEnrollment,
     getAllEnrollments,
     getSingleEnrollment,
     updateEnrollment,
     deleteEnrollment,
-    approvedStudent
+    approvedStudent,
+    getMyEnrollment
 };
