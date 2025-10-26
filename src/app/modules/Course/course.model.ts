@@ -24,6 +24,19 @@ const CourseSchema = new Schema<TCourse>(
             required: [true, 'Duration is required'],
             min: [1, 'Duration must be at least 1 hour'],
         },
+
+        isClass: {
+            type: Number,
+            required: [true, 'Class is required'],
+            trim: true,
+        },
+
+        videoUrls: {
+            type: [String],
+            required: [true, "At least one video URL is required"],
+        },
+
+
         price: {
             type: Number,
             required: [true, 'Price is required'],

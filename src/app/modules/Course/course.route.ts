@@ -31,6 +31,21 @@ router.patch(
     CourseControllers.updateCourse
 );
 
+
+
+router.post("/upload-video/:id", CourseControllers.uploadclass);
+
+
+router.patch(
+    '/uploadclass/:id',
+    // auth(USER_ROLE.ADMIN),
+    // validateRequest(CourseValidations.updateCourseValidationSchema),
+    CourseControllers.uploadclass
+);
+
+
+
+
 // Delete a course by ID (Only accessible by admin)
 router.delete('/:id', auth(USER_ROLE.ADMIN), CourseControllers.deleteCourse);
 

@@ -6,6 +6,8 @@ export type TCourse = {
     description: string;
     instructor: Types.ObjectId; // Reference to the User (instructor)
     duration: number; // Duration in hours
+    isClass: number;
+    videoUrls: string[];
     price: number;
     startDate: Date;
     endDate: Date;
@@ -15,6 +17,7 @@ export type TCourse = {
 
 export type TCourseFilters = {
     searchTerm?: string;
+    isClass?: number;
     minPrice?: number;
     maxPrice?: number;
     startDate?: Date;

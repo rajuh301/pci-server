@@ -45,21 +45,6 @@ const approvedStudent = catchAsync(async (req: Request, res: Response) => {
 
 
 
-
-
-
-// Get all enrollments
-// const getAllEnrollments = catchAsync(async (req: Request, res: Response) => {
-//     const filters = req.query;
-//     const result = await EnrollmentServices.getAllEnrollments(filters);
-
-//     sendResponse(res, {
-//         statusCode: httpStatus.OK,
-//         success: true,
-//         message: 'Enrollments retrieved successfully!',
-//         data: result,
-//     });
-// });
 const getAllEnrollments = catchAsync(async (req: Request, res: Response) => {
     const result = await EnrollmentServices.getAllEnrollments();
 

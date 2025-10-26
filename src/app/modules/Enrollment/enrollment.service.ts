@@ -37,7 +37,7 @@ const getAllEnrollments = async () => {
 // Get a single enrollment by ID
 const getSingleEnrollment = async (id: string) => {
     const result = await Enrollment.find({ student: id })
-        // .populate('student', 'name', 'email') // Populate student details
+        .populate('student') // Populate student details
         .populate('course'); // Populate course details
     return result;
 };
@@ -73,6 +73,8 @@ const approvedStudent = async (_id: string) => {
 
 const getMyEnrollment = async (studentId: string) => {
     const result = await Enrollment.find({ student: studentId })
+        .populate('student') // Populate student details
+        .populate('course'); // Populate course details
     return result;
 };
 

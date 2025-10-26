@@ -13,6 +13,8 @@ const createCourseValidationSchema = z.object({
         startDate: z.string({ required_error: 'Start date is required' }),
         endDate: z.string({ required_error: 'End date is required' }),
         isActive: z.boolean().optional(),
+        isClass: z.number({ required_error: 'Class is required' }),
+         videoUrls: z.array(z.string()).min(1, 'At least one video URL is required'),
     }),
 });
 
@@ -27,6 +29,8 @@ const updateCourseValidationSchema = z.object({
         startDate: z.string().optional(),
         endDate: z.string().optional(),
         isActive: z.boolean().optional(),
+        isClass: z.number().optional(),
+         videoUrls: z.array(z.string()).optional(),
     }),
 });
 

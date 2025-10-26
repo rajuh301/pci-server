@@ -59,6 +59,43 @@ const updateCourse = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+
+// -----------------------------------
+const uploadclass = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const { videoUrls } = req.body;
+
+        if (!videoUrls || (Array.isArray(videoUrls) && videoUrls.length === 0)) {
+            return res.status(400).json({
+                success: false,
+                message: "No video URLs provided",
+            });
+        }
+
+        const result = await CourseServices.uploadclass(id, videoUrls);
+
+        if (!result) {
+            return res.status(404).json({
+                success: false,
+                message: "Course not found",
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Video(s) added successfully!",
+            data: result,
+        });
+    } catch (error: any) {
+        res.status(500).json({
+            success: false,
+            message: error.message || "Something went wrong",
+        });
+    }
+};
+
+// -----------------------------------
 // Delete a course by ID
 const deleteCourse = catchAsync(async (req: Request, res: Response) => {
     const { id } = req.params;
@@ -72,10 +109,13 @@ const deleteCourse = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+
+
 export const CourseControllers = {
     createCourse,
     getAllCourses,
     getSingleCourse,
     updateCourse,
     deleteCourse,
+    uploadclass
 };
