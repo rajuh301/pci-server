@@ -5,6 +5,7 @@ import { AdminRoutes } from '../modules/Admin/admin.route';
 import { CourseRoutes } from '../modules/Course/course.route';
 import { EnrollmentRoutes } from '../modules/Enrollment/enrollment.route';
 import { MyClassRoutes } from '../modules/MyClass/myClass.route';
+import { PaymentRoutes } from '../modules/Payment/payment.route';
 
 
 
@@ -40,6 +41,11 @@ const moduleRoutes = [
   {
     path: '/myClass',
     route: MyClassRoutes,
+  },
+ 
+  {
+    path: '/payment',
+    route: PaymentRoutes,
   },
 
 
