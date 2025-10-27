@@ -6,5 +6,5 @@ export type TPayment = {
     coursePrice: number;
     paymentMethod: string;
     transactionId: string;
-    userId: Types.ObjectId; // Reference to the Course
+    userId: Types.ObjectId; // Reference to the Course....
 }
