@@ -10,26 +10,13 @@ const createEnrollment = async (payload: TEnrollment) => {
     return result;
 };
 
-// Get all enrollments with filtering, sorting, and pagination
-// const getAllEnrollments = async (filters: Record<string, unknown>) => {
-//     const enrollmentQuery = new QueryBuilder(Enrollment.find(), filters)
-//         .search(['status'])
-//         .filter()
-//         .sort()
-//         .paginate()
-//         .fields();
-
-//     const result = await enrollmentQuery.modelQuery
-//         .populate('student', 'name email') // Populate student details
-//         .populate('course', 'title description'); // Populate course details
-
-//     return result;
-// };
 
 
 
 const getAllEnrollments = async () => {
-    const result = await Enrollment.find().populate('student');;
+    const result = await Enrollment.find()
+        .populate('student')
+        .populate('course');
     return result;
 };
 
@@ -70,6 +57,17 @@ const approvedStudent = async (_id: string) => {
 };
 
 
+const rejectStudent = async (_id: string) => {
+    const result = await Enrollment.findOneAndUpdate(
+        { _id: _id },
+        { status: "REJECTED" },
+        { new: true } // Returns the updated document
+    );
+
+    return result;
+};
+
+
 
 const getMyEnrollment = async (studentId: string) => {
     const result = await Enrollment.find({ student: studentId })
@@ -86,5 +84,7 @@ export const EnrollmentServices = {
     updateEnrollment,
     deleteEnrollment,
     approvedStudent,
-    getMyEnrollment
+    getMyEnrollment,
+    rejectStudent
+
 };

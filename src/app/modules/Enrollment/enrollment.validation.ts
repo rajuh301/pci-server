@@ -9,7 +9,7 @@ const createEnrollmentValidationSchema = z.object({
         course: z.string({ required_error: 'Course ID is required' }),
         paymentAmount: z.string({ required_error: 'Payment amount is required' }),
         paymentBank: z.string({ required_error: 'Payment bank is required' }),
-        screenShort: z.string({ required_error: 'Screen Short is required' }),
+        tnxId: z.string({ required_error: 'Transaction Id is required' }),
         status: z.enum(['PENDING', 'APPROVED', 'REJECTED']).optional(),
     }),
 });

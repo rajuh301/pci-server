@@ -44,6 +44,28 @@ const approvedStudent = catchAsync(async (req: Request, res: Response) => {
 });
 
 
+const rejectStudent = catchAsync(async (req: Request, res: Response) => {
+    const { student, status } = req.body;
+
+    if (status !== 'APPROVED' && status !== 'REJECTED') {
+        return res.status(httpStatus.BAD_REQUEST).json({
+            success: false,
+            message: 'Invalid status. Only "APPROVED or REJECTED" is allowed.',
+        });
+    }
+
+    const result = await EnrollmentServices.rejectStudent(student);
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'Student Rejected successfully!',
+        data: result,
+    });
+});
+
+
+
 
 const getAllEnrollments = catchAsync(async (req: Request, res: Response) => {
     const result = await EnrollmentServices.getAllEnrollments();
@@ -120,5 +142,6 @@ export const EnrollmentControllers = {
     updateEnrollment,
     deleteEnrollment,
     approvedStudent,
-    getMyEnrollment
+    getMyEnrollment,
+    rejectStudent
 };

@@ -9,7 +9,7 @@ export type TEnrollment = {
 
   paymentAmount: string;
   paymentBank: string;
-  screenShort: string
+  tnxId: string
 
   status: 'PENDING' | 'APPROVED' | 'REJECTED';
 };

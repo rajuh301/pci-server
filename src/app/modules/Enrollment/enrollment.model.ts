@@ -34,7 +34,7 @@ const EnrollmentSchema = new Schema<TEnrollment>(
       required: [true, "Input bank name"]
     },
 
-    screenShort: {
+    tnxId: {
       type: String,
       required: [true, "Input payment screen short"]
     },

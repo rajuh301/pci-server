@@ -22,13 +22,18 @@ router.post(
 
 // Get all enrollments (Accessible by admins)
 router.get('/',
-    auth(USER_ROLE.ADMIN),
+    // auth(USER_ROLE.ADMIN),
     EnrollmentControllers.getAllEnrollments);
 
 
 router.patch('/approve',
     auth(USER_ROLE.ADMIN),
     EnrollmentControllers.approvedStudent);
+
+
+router.patch('/reject',
+    auth(USER_ROLE.ADMIN),
+    EnrollmentControllers.rejectStudent);
 
 
 
